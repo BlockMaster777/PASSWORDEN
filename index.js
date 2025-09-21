@@ -1,5 +1,5 @@
-let psw_box = document.querySelector('.psw_box');
-let gen_btn = document.querySelector('.gen_btn');
+let pswBox = document.querySelector('.psw-box');
+let genBtn = document.querySelector('.gen-btn');
 
 const adjectives = [
     "Bright", "Silent", "Ancient", "Quick", "Brave", "Gentle",
@@ -7,13 +7,13 @@ const adjectives = [
     "Shiny", "Wild", "Graceful", "Frosty", "Radiant", "Swift"
 ];
 
-const self_verbs = [
+const selfVerbs = [
     "Run", "Jump", "Fly", "Travel",
     "Glow", "Whisper", "Shine", "Roar",
     "Dance", "Sing"
 ];
 
-const to_someone_verbs = [
+const toSomeoneVerbs = [
     "Explore", "Create", "Build",
     "Discover", "Imagined", "Chase"
 ]
@@ -47,37 +47,37 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
-function on_gen_click() {
-    psw_box.style.display = 'flex';
-    gen_btn.innerHTML = 'REGENERATE';
-    
+function onGenClick() {
+    pswBox.style.display = 'flex';
+    genBtn.innerHTML = 'REGENERATE';
+
     let passwordParts = [];
-    
+
     if (getRandomInt(2) === 1) {
         passwordParts.push(adjectives[getRandomInt(adjectives.length)]);
     } else {
         passwordParts.push(participles[getRandomInt(participles.length)]);
     }
-    
+
     passwordParts.push(nouns[getRandomInt(nouns.length)]);
-    
+
     if (getRandomInt(2) === 1) {
         passwordParts.push(adverbs[getRandomInt(adverbs.length)]);
     }
-    
+
     if (getRandomInt(2) === 1) {
-        passwordParts.push(self_verbs[getRandomInt(self_verbs.length)]);
+        passwordParts.push(selfVerbs[getRandomInt(selfVerbs.length)]);
     } else {
-        passwordParts.push(to_someone_verbs[getRandomInt(to_someone_verbs.length)]);
+        passwordParts.push(toSomeoneVerbs[getRandomInt(toSomeoneVerbs.length)]);
         passwordParts.push(nouns[getRandomInt(nouns.length)]);
     }
-    
+
     passwordParts.splice(getRandomInt(passwordParts.length), 0, Math.trunc(getRandomInt(100) / 5) * 5);
     passwordParts.splice(getRandomInt(passwordParts.length), 0, symbols[getRandomInt(symbols.length)]);
-    
+
     document.querySelector("p").innerHTML = passwordParts.join('');
 }
 
-function copy_password() {
+function copyPassword() {
     navigator.clipboard.writeText(document.querySelector("p").innerHTML);
 }
